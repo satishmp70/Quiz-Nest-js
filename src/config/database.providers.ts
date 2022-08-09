@@ -8,5 +8,5 @@ export const databaseProviders: TypeOrmModuleOptions = {
   password: 'password',
   database: 'quiz',
   entities: [__dirname + '/../**/*.entity{.ts,.js}'],
-  // synchronize: true,  // not use on prod
+  synchronize: true,  // not use on prod
 };

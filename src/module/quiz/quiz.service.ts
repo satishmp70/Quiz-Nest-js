@@ -6,19 +6,22 @@ import { Quiz } from './quiz.entity';
 
 @Injectable()
 export class QuizService {
-
   constructor(
     @InjectRepository(Quiz)
-    private  quizRepository:Repository<Quiz>,
+    private quizRepository: Repository<Quiz>,
   ) {}
 
-  @Get('/')
-  getAllQuiz() {
-    return [1, 2, 3,4,5,6,7,8,9,10];
+
+  async getQuizById(id: number): Promise<Quiz> {
+    return await this.quizRepository.findOne({
+      where: {
+        id: id,
+      },
+      relations: ['questions'],
+    });
   }
 
-  async createNewQuiz(quiz:CreateQuizDto){
+  async createNewQuiz(quiz: CreateQuizDto) {
     return await this.quizRepository.save(quiz);
   }
-
 }
